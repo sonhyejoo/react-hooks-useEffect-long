@@ -29,9 +29,12 @@ function PictureDisplay({ size, featherCount, featherColors }) {
   useEffect(() => {
     console.log("PictureDisplay size", size);
     let cname = "";
-    if (size == s) {
-      return;
-    }
+    if (size === "s") cname = "small";
+    else if (size === "m") cname = "medium";
+    else if (size === "l") cname = "large";
+    else if (size == "xl") cname = "xlarge";
+
+    setSizeClass(cname);
   }, [size]);
 
   useEffect(() => {
@@ -50,7 +53,7 @@ function PictureDisplay({ size, featherCount, featherColors }) {
   }
 
   return (
-    <div className={`image-area medium`}>
+    <div className={`image-area ${sizeClass}`}>
       {colors.map((c, i) => (
         <img
           key={feathers[i]}
