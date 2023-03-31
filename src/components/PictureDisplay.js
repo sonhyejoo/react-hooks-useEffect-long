@@ -46,15 +46,16 @@ function PictureDisplay({ size, featherCount, featherColors }) {
   }, [featherColors]);
 
   // TODO: Wrap in useEffect
-  const colors = [];
-  if (!featherColors || featherColors.length === 0) featherColors = [""];
-  for (let i = 0; i < featherCount; i++) {
-    colors.push(featherColors[i % featherColors.length]);
-  }
-
+  useEffect(() => {
+    const colors = [];
+    if (!featherColors || featherColors.length === 0) featherColors = [""];
+    for (let i = 0; i < featherCount; i++) {
+      colors.push(featherColors[i % featherColors.length]);
+    }
+  }, [featherColors]);
   return (
     <div className={`image-area ${sizeClass}`}>
-      {colors.map((c, i) => (
+      {featherColors.map((c, i) => (
         <img
           key={feathers[i]}
           src={feathers[i]}
